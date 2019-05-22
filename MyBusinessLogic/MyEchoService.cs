@@ -10,4 +10,14 @@ namespace MyBusinessLogic
     {
         string EchoPlease(string s);
     }
+
+    class MyEchoService : IMyEchoService
+    {
+        public string EchoPlease(string s)
+        {
+            string res = $"{DateTime.Now.ToShortTimeString()} - {s}";
+            Console.WriteLine(res);
+            return res;
+        }
+    }
 }
