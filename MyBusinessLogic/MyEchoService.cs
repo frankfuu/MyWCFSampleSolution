@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MyBusinessLogic
 {
     [ServiceContract]
-    interface IMyEchoService
+    public interface IMyEchoService
     {
         [OperationContract]
         string EchoPlease(string s);
@@ -18,7 +18,7 @@ namespace MyBusinessLogic
     {
         public string EchoPlease(string s)
         {
-            string res = $"{DateTime.Now.ToShortTimeString()} - {s}";
+            string res = $"{DateTime.Now.ToLongTimeString()} - {s}";
             Console.WriteLine(res);
             return res;
         }
