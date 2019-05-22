@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MyBusinessLogic
 {
+    [ServiceContract]
     interface IMyEchoService
     {
+        [OperationContract]
         string EchoPlease(string s);
     }
 
-    class MyEchoService : IMyEchoService
+    public class MyEchoService : IMyEchoService
     {
         public string EchoPlease(string s)
         {
