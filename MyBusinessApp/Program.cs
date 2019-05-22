@@ -5,6 +5,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Messaging;
 
 namespace MyBusinessApp
 {
@@ -12,6 +13,8 @@ namespace MyBusinessApp
     {
         static void Main(string[] args)
         {
+            EnsureQueuesExist();
+
             ServiceHost h = new ServiceHost(typeof(MyEchoService));
             h.Open();
 
@@ -23,6 +26,14 @@ namespace MyBusinessApp
             }
             Console.WriteLine("-------------------------------------------------------------");
             Console.Read();
+        }
+
+        static void EnsureQueuesExist()
+        {
+            string q = ".\\private$\\MyEchoService";
+
+            if (!MessageQueue.Exists(q))
+                MessageQueue.Create(q);
         }
     }
 }

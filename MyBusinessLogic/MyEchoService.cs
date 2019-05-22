@@ -10,17 +10,16 @@ namespace MyBusinessLogic
     [ServiceContract]
     public interface IMyEchoService
     {
-        [OperationContract]
-        string EchoPlease(string s);
+        [OperationContract(IsOneWay = true)]
+        void EchoPlease(string s);
     }
 
     public class MyEchoService : IMyEchoService
     {
-        public string EchoPlease(string s)
+        public void EchoPlease(string s)
         {
             string res = $"{DateTime.Now.ToLongTimeString()} - {s}";
             Console.WriteLine(res);
-            return res;
         }
     }
 }
